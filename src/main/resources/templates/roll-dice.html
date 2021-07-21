@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Roll Dice')" />
+<body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+
+<h1>Please guess a number!</h1>
+
+<!--<a action="/roll-dice" name="dice" href="/roll-dice/1">1</a>-->
+<!--<a name="dice" href="/roll-dice/2">2</a>-->
+<!--<a name="dice" href="/roll-dice/3">3</a>-->
+<!--<a name="dice" href="/roll-dice/4">4</a>-->
+<!--<a name="dice" href="/roll-dice/5">5</a>-->
+<!--<a name="dice" href="/roll-dice/6">6</a>-->
+
+<form action="/roll-dice" method="post">
+    <button type="submit" name="dice" value="1">1</button>
+</form>
+
+<form action="/roll-dice" method="post">
+    <button type="submit" name="dice" value="2">2</button>
+</form>
+
+<form action="/roll-dice" method="post">
+    <button type="submit" name="dice" value="3">3</button>
+</form>
+
+<form action="/roll-dice" method="post">
+    <button type="submit" name="dice" value="4">4</button>
+</form>
+
+<form action="/roll-dice" method="post">
+    <button type="submit" name="dice" value="5">5</button>
+</form>
+
+<form action="/roll-dice" method="post">
+    <button type="submit" name="dice" value="6">6</button>
+</form>
+
+
+<h1 th:text="${dice}"></h1>
+
+
+<th:block th:include="partials/scripts.html :: scripts"></th:block>
+
+</body>
+<footer th:replace="partials/footer.html :: footer"></footer>
+</html>
