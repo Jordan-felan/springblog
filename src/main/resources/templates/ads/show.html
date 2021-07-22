@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/head :: head('Show')"/>
+<body>
+<nav th:replace="partials/navbar.html :: navbar"></nav>
+
+<h1>Ad</h1>
+<div th:if="${ad}">
+    <h2 th:text="${ad.title}">title</h2>
+    <p th:text="${ad.description}">description</p>
+</div>
+
+<th:block th:include="partials/scripts.html :: scripts"></th:block>
+
+</body>
+<footer th:replace="partials/footer.html :: footer"></footer>
+</html>
