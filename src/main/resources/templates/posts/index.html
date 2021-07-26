@@ -8,7 +8,11 @@
 <div th:each="post : ${posts}">
     <p th:text="${post.title}" />
     <p th:text="${post.body}" />
+
+    <a th:href="@{/posts/update/{id}(id=${post.id})}" class="btn">Edit</a>
+    <a th:href="@{/posts/delete/{id}(id=${post.id})}" class="btn">Delete</a>
 </div>
+
 
 
 <th:block th:include="partials/scripts.html :: scripts"></th:block>

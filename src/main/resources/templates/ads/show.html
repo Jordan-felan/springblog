@@ -8,6 +8,10 @@
 <div th:if="${ad}">
     <h2 th:text="${ad.title}">title</h2>
     <p th:text="${ad.description}">description</p>
+    <p th:text="${ad.user.username}"/>
+    <div th:each="cat : ${ad.categories}">
+        <span th:text="${cat.name}" />
+    </div>
 </div>
 
 <th:block th:include="partials/scripts.html :: scripts"></th:block>

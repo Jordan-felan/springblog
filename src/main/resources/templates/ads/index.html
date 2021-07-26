@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials/head :: head('Index')"/>
+<head th:replace="partials/head :: head('Ads Index')"/>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 
@@ -8,7 +8,9 @@
 <div th:each="ad : ${ads}">
     <p th:text="${ad.title}" />
     <p th:text="${ad.description}" />
+    <p th:text="${ad.user.username}"/>
 </div>
+
 
 
 <th:block th:include="partials/scripts.html :: scripts"></th:block>
