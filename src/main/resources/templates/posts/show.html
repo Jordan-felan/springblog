@@ -8,6 +8,7 @@
 <div th:each="post : ${post}">
     <p th:text="${post.title}" />
     <p th:text="${post.body}" />
+    <p th:text="${post.user.email}"/>
 </div>
 
 <th:block th:include="partials/scripts.html :: scripts"></th:block>

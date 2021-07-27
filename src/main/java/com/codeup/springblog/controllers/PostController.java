@@ -2,6 +2,7 @@ package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.controllers.models.Post;
 import com.codeup.springblog.controllers.models.PostRepository;
+import com.codeup.springblog.controllers.models.User;
 import com.codeup.springblog.controllers.models.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +17,9 @@ public class PostController {
     private final PostRepository postsDao;
     private final UserRepository usersDao;
 
-    public PostController(PostRepository postsDao, UserRepository userDao){
+    public PostController(PostRepository postsDao, UserRepository usersDao){
         this.postsDao = postsDao;
-        this.usersDao = userDao;
+        this.usersDao = usersDao;
     }
 
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
@@ -44,17 +45,18 @@ public class PostController {
 //        return "View an individuals post!";
 //    }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
-    @ResponseBody
-    public String postsCreate() {
+    @GetMapping("/posts/create")
+    public String createPostForm(Model model) {
 
-        return "View the form for creating a post!";
+        return "/posts/create";
     }
 
-    @PostMapping(path = "/posts/create")
-    @ResponseBody
-    public String createPost(){
-        return "Create a new post!";
+    @PostMapping("/posts/create")
+    public String createPost(@RequestParam String title, @RequestParam String body) {
+        User user = usersDao.getById(1L);
+        Post post = new Post(title, body, user);
+        postsDao.save(post);
+        return "redirect:/posts";
     }
 
 @GetMapping("/posts/update/{id}")
