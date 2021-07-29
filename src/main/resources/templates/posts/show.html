@@ -5,10 +5,15 @@
 <nav th:replace="partials/navbar.html :: navbar"></nav>
 
 <h1>Blog</h1>
-<div th:each="post : ${post}">
+<div >
     <p th:text="${post.title}" />
     <p th:text="${post.body}" />
     <p th:text="${post.user.email}"/>
+
+    <div th:if="${isPostOwner}">
+        <a th:href="@{/posts/edit/{id}(id=${post.id})}" class="btn">Edit</a>
+        <a th:href="@{/posts/delete/{id}(id=${post.id})}" class="btn">Delete</a>
+    </div>
 </div>
 
 <th:block th:include="partials/scripts.html :: scripts"></th:block>

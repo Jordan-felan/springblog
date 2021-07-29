@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head th:replace="partials/head :: head('Index')"/>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
@@ -9,10 +9,10 @@
     <p th:text="${post.title}" />
     <p th:text="${post.body}" />
 
-    <a th:href="@{/posts/update/{id}(id=${post.id})}" class="btn">Edit</a>
-    <a th:href="@{/posts/delete/{id}(id=${post.id})}" class="btn">Delete</a>
-</div>
+    <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-primary">More Details</a>
 
+
+</div>
 
 
 <th:block th:include="partials/scripts.html :: scripts"></th:block>

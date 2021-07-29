@@ -1,9 +1,11 @@
 package com.codeup.springblog.controllers;
 
 import com.codeup.springblog.models.Post;
-import com.codeup.springblog.models.PostRepository;
-import com.codeup.springblog.models.UserRepository;
+import com.codeup.springblog.models.User;
+import com.codeup.springblog.repositories.PostRepository;
+import com.codeup.springblog.repositories.UserRepository;
 import com.codeup.springblog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,9 +42,16 @@ public class PostController {
 
     @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
 
-    public String getOnePost(@PathVariable long id, Model model) {
+    @GetMapping("/posts/{id}")
+    public String singlePost(@PathVariable long id, Model model) {
         Post post = postsDao.getById(id);
+        boolean isPostOwner = false;
+        if (SecurityContextHolder.getContext().getAuthentication().getPrincipal() != "anonymousUser") {
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            isPostOwner = currentUser.getId() == post.getUser().getId();
+        }
         model.addAttribute("post", post);
+        model.addAttribute("isPostOwner", isPostOwner);
         return "posts/show";
     }
 
@@ -59,8 +68,9 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
-       post.setUser(usersDao.getById(1L));
-        emailSvc.prepareAndSend(post.getUser().getEmail(), "title", "body");
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+               post.setUser(currentUser);
+//        emailSvc.prepareAndSend(post.getUser().getEmail(), "title", "body");
         postsDao.save(post);
         return "redirect:/posts";
     }
@@ -74,6 +84,8 @@ public class PostController {
 
         @PostMapping("/posts/edit")
                 public String saveUpdatedPost(@ModelAttribute Post post){
+            User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            post.setUser(currentUser);
 //            System.out.println(post.getId());
             postsDao.save(post);
             return "redirect:/posts";
