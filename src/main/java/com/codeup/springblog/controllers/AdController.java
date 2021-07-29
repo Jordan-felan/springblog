@@ -1,13 +1,11 @@
 package com.codeup.springblog.controllers;
 
-import com.codeup.springblog.controllers.models.Ad;
-import com.codeup.springblog.controllers.models.AdRepository;
-import com.codeup.springblog.controllers.models.Post;
+import com.codeup.springblog.models.Ad;
+import com.codeup.springblog.models.AdRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 @Controller
 public class AdController {
     private final AdRepository adDao;

@@ -3,14 +3,14 @@
 <head th:replace="partials/head :: head('Create Post')"/>
 <body>
 <nav th:replace="partials/navbar.html :: navbar"></nav>
-<form action="/posts/create" th:action="@{/posts/create}" method="post">
-    <div class="input-field col s12">
-        <input id="title" name="title" type="text" class="validate" />
+<form action="/posts/create" th:action="@{/posts/create}" method="post" th:object="${post}">
+    <div class="input-field ">
+        <input id="title" name="title" type="text" class="validate" th:field="*{title}"/>
         <label for="title">Title</label>
     </div>
 
-    <div class="input-field col s12">
-        <textarea id="body" name="body" class="materialize-textarea"></textarea>
+    <div class="input-field ">
+        <textarea id="body" name="body" class="materialize-textarea" th:field="*{body}"></textarea>
         <label for="body">Body</label>
     </div>
 

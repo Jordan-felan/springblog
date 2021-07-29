@@ -1,4 +1,4 @@
-package com.codeup.springblog.controllers.models;
+package com.codeup.springblog.models;
 import javax.persistence.*;
 
 @Entity
