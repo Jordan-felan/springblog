@@ -10,4 +10,5 @@ public interface AdRepository extends JpaRepository<Ad, Long> {
     @Query("FROM Ad a WHERE a.title LIKE %:term%")
     Ad findFirstByTitle(String term);
 
+    Ad findByTitle(String ad_to_be_deleted);
 }
