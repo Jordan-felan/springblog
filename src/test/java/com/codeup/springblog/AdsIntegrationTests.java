@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-//import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.mock.web.MockHttpSession;
@@ -71,7 +70,11 @@ public class AdsIntegrationTests {
                 .getSession();
     }
 
-
+    @Test
+    public void contextLoads() {
+        // Sanity Test, just to make sure the MVC bean is working
+        assertNotNull(mvc);
+    }
 
     @Test
     public void testIfUserSessionIsActive() throws Exception {
